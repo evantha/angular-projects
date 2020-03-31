@@ -1,20 +1,18 @@
 <div class="row">
 
-  <div class="col-lg-4 col-md-6 mb-4">
-    <!--course-->
-    <app-course></app-course>
+  <div *ngFor="let myCourse of courses" class="col-lg-4 col-md-6 mb-4">
+    <app-course [course]="myCourse" (courseSelected)="onCourseSelected($event)"></app-course>
   </div>
 
   <div class="col-lg-4 col-md-6 mb-4">
     <!--course-->
-    <app-course></app-course>
+    <app-course [course]="{
+      title: 'Angular Workshop',
+      price: 50,
+      description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!',
+      starRating: 4
+    }" (courseSelected)="onCourseSelected($event)"></app-course>
   </div>
-
-  <div class="col-lg-4 col-md-6 mb-4">
-    <!--course-->
-    <app-course></app-course>
-  </div>
-
 
 
 </div>

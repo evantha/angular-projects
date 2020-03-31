@@ -1,7 +1,13 @@
 import {
   Component,
-  OnInit
+  OnInit,
+  Input,
+  Output,
+  EventEmitter
 } from '@angular/core';
+import {
+  Course
+} from 'src/models/course';
 
 @Component({
   selector: 'app-course',
@@ -10,25 +16,28 @@ import {
 })
 export class CourseComponent implements OnInit {
 
-  course = {
-    title: 'Angular Workshop',
-    price: 50,
-    description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!',
-    starRating: 4
-  }
+  @Input() course: Course
+
+  @Output() courseSelected = new EventEmitter < Course > ();
+
+  inFocus = false;
 
   constructor() {}
 
-  ngOnInit(): void {
-/*     setInterval(() => {
-      this.course.price = Math.round(Math.random() * 100);
-    }, 1000); */
-  }
+  ngOnInit(): void {}
 
   onClick(event: Event) {
     event.preventDefault();
-    console.log('clicked');
     this.course.price += 10;
+    this.courseSelected.emit(this.course);
+  }
+
+  onMouseEnter() {
+    this.inFocus = true;
+  }
+
+  onMouseLeave() {
+    this.inFocus = false;
   }
 
 }
