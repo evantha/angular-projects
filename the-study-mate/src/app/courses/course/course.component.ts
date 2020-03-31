@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  OnInit
+} from '@angular/core';
 
 @Component({
   selector: 'app-course',
@@ -7,9 +10,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CourseComponent implements OnInit {
 
-  constructor() { }
+  course = {
+    title: 'Angular Workshop',
+    price: 50,
+    description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!',
+    starRating: 4
+  }
+
+  constructor() {}
 
   ngOnInit(): void {
+/*     setInterval(() => {
+      this.course.price = Math.round(Math.random() * 100);
+    }, 1000); */
+  }
+
+  onClick(event: Event) {
+    event.preventDefault();
+    console.log('clicked');
+    this.course.price += 10;
   }
 
 }
