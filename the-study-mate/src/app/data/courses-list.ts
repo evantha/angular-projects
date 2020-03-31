@@ -1,5 +1,5 @@
 export const COURSE_LIST = [{
-    title: 'Angular Workshop',
+    title: 'Angular workshop',
     price: 50,
     description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!',
     starRating: 4
