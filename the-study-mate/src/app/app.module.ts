@@ -8,6 +8,7 @@ import { CarouselComponent } from './carousel/carousel.component';
 import { FiltersComponent } from './filters/filters.component';
 import { CoursesComponent } from './courses/courses.component';
 import { CourseComponent } from './courses/course/course.component';
+import { HighlightableDirective } from './directives/highlightable.directive';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { CourseComponent } from './courses/course/course.component';
     CarouselComponent,
     FiltersComponent,
     CoursesComponent,
-    CourseComponent
+    CourseComponent,
+    HighlightableDirective
   ],
   imports: [
     BrowserModule
