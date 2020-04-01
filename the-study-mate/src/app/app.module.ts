@@ -7,7 +7,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { CarouselComponent } from './components/home/carousel/carousel.component';
 import { FiltersComponent } from './components/home/filters/filters.component';
 import { CoursesComponent } from './components/home/courses/courses.component';
-import { CourseComponent } from './components/home/courses/course/course.component';
+import { CourseComponent } from './components/shared/course/course.component';
 import { HighlightableDirective } from './directives/highlightable.directive';
 import { EllipsisPipe } from './pipes/ellipsis.pipe';
 import { HomeComponent } from './components/home/home.component';
@@ -19,12 +19,14 @@ import { CourseDetailsComponent } from './components/course-details/course-detai
 import { NotImplementedComponent } from './components/not-implemented/not-implemented.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { BackHomeButtonComponent } from './components/back-home-button/back-home-button.component';
+import { CourseEditModalComponent } from './components/my-courses/course-edit-modal/course-edit-modal.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 const ROUTES : Routes = [
   {path: "home" , component: HomeComponent},
   {path: "contact" , component: NotImplementedComponent},
   {path: "about" , component: NotImplementedComponent},
-  {path: "course-details" , component: CourseDetailsComponent},
+  {path: "course-details/:id" , component: CourseDetailsComponent},
   {path: "my-courses" , component: MyCoursesComponent},
   {path: "", redirectTo: "/home", pathMatch: "full"},
   {path: "**", component: PageNotFoundComponent}
@@ -47,11 +49,13 @@ const ROUTES : Routes = [
     AboutComponent,
     NotImplementedComponent,
     PageNotFoundComponent,
-    BackHomeButtonComponent
+    BackHomeButtonComponent,
+    CourseEditModalComponent
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(ROUTES)
+    RouterModule.forRoot(ROUTES),
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

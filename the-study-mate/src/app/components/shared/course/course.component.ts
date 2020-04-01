@@ -16,9 +16,12 @@ import {
 })
 export class CourseComponent implements OnInit {
 
-  @Input() course: Course
+  @Input() course: Course;
+  @Input() editable: false;
 
   @Output() courseSelected = new EventEmitter < Course > ();
+  @Output() courseEdited = new EventEmitter < Course > ();
+  @Output() courseDeleted = new EventEmitter < Course > ();
 
   inFocus = false;
 
@@ -38,6 +41,14 @@ export class CourseComponent implements OnInit {
 
   onMouseLeave() {
     this.inFocus = false;
+  }
+
+  onEdit() {
+    this.courseEdited.emit(this.course);
+  }
+
+  onDelete() {
+    this.courseDeleted.emit(this.course);
   }
 
 }
