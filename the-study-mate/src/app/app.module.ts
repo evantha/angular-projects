@@ -14,6 +14,20 @@ import { HomeComponent } from './components/home/home.component';
 import { MyCoursesComponent } from './components/my-courses/my-courses.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { AboutComponent } from './components/about/about.component';
+import { Routes, RouterModule } from '@angular/router';
+import { CourseDetailsComponent } from './components/course-details/course-details.component';
+import { NotImplementedComponent } from './components/not-implemented/not-implemented.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+
+const ROUTES : Routes = [
+  {path: "home" , component: HomeComponent},
+  {path: "contact" , component: NotImplementedComponent},
+  {path: "about" , component: NotImplementedComponent},
+  {path: "course-details" , component: CourseDetailsComponent},
+  {path: "my-courses" , component: MyCoursesComponent},
+  {path: "", redirectTo: "/home", pathMatch: "full"},
+  {path: "**", component: PageNotFoundComponent}
+];
 
 @NgModule({
   declarations: [
@@ -29,10 +43,13 @@ import { AboutComponent } from './components/about/about.component';
     HomeComponent,
     MyCoursesComponent,
     ContactComponent,
-    AboutComponent
+    AboutComponent,
+    NotImplementedComponent,
+    PageNotFoundComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    RouterModule.forRoot(ROUTES)
   ],
   providers: [],
   bootstrap: [AppComponent]
