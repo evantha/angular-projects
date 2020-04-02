@@ -10,7 +10,7 @@ import { Course } from 'src/models/course';
   styleUrls: ['./my-courses.component.css']
 })
 export class MyCoursesComponent implements OnInit {
-  courseList = COURSE_LIST;
+  courseList = [...COURSE_LIST].splice(0, 1);
 
   constructor(private modalService: NgbModal) {}
 
