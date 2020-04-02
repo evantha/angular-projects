@@ -21,6 +21,7 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import { BackHomeButtonComponent } from './components/back-home-button/back-home-button.component';
 import { CourseEditModalComponent } from './components/my-courses/course-edit-modal/course-edit-modal.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ReactiveFormsModule } from '@angular/forms';
 
 const ROUTES : Routes = [
   {path: "home" , component: HomeComponent},
@@ -55,7 +56,8 @@ const ROUTES : Routes = [
   imports: [
     BrowserModule,
     RouterModule.forRoot(ROUTES),
-    NgbModule
+    NgbModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
