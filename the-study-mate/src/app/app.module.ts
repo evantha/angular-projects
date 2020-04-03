@@ -22,7 +22,8 @@ import { BackHomeButtonComponent } from './components/back-home-button/back-home
 import { CourseEditModalComponent } from './components/my-courses/course-edit-modal/course-edit-modal.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ReactiveFormsModule } from '@angular/forms';
-import { AdminModule } from './admin/admin.module';
+import { AuthGuard } from './guards/auth.guard';
+import { AccessDeniedComponent } from './components/access-denied/access-denied.component';
 
 const ROUTES: Routes = [
   { path: "home", component: HomeComponent },
@@ -30,6 +31,12 @@ const ROUTES: Routes = [
   { path: "about", component: NotImplementedComponent },
   { path: "course-details/:id", component: CourseDetailsComponent },
   { path: "my-courses", component: MyCoursesComponent },
+  { path: "access-denied", component: AccessDeniedComponent },
+  {
+    path: 'admin-dashboard',
+    loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule),
+    canActivate : [AuthGuard]
+  },
   { path: "", redirectTo: "/home", pathMatch: "full" },
   { path: "**", component: PageNotFoundComponent }
 ];
@@ -52,14 +59,14 @@ const ROUTES: Routes = [
     NotImplementedComponent,
     PageNotFoundComponent,
     BackHomeButtonComponent,
-    CourseEditModalComponent
+    CourseEditModalComponent,
+    AccessDeniedComponent
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(ROUTES),
     NgbModule,
-    ReactiveFormsModule,
-    AdminModule
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
