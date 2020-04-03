@@ -35,7 +35,8 @@ const ROUTES: Routes = [
   {
     path: 'admin-dashboard',
     loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule),
-    canActivate : [AuthGuard]
+    canLoad : [AuthGuard],
+    // canActivate : [AuthGuard],
   },
   { path: "", redirectTo: "/home", pathMatch: "full" },
   { path: "**", component: PageNotFoundComponent }
