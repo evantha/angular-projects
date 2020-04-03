@@ -22,15 +22,16 @@ import { BackHomeButtonComponent } from './components/back-home-button/back-home
 import { CourseEditModalComponent } from './components/my-courses/course-edit-modal/course-edit-modal.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AdminModule } from './admin/admin.module';
 
-const ROUTES : Routes = [
-  {path: "home" , component: HomeComponent},
-  {path: "contact" , component: NotImplementedComponent},
-  {path: "about" , component: NotImplementedComponent},
-  {path: "course-details/:id" , component: CourseDetailsComponent},
-  {path: "my-courses" , component: MyCoursesComponent},
-  {path: "", redirectTo: "/home", pathMatch: "full"},
-  {path: "**", component: PageNotFoundComponent}
+const ROUTES: Routes = [
+  { path: "home", component: HomeComponent },
+  { path: "contact", component: NotImplementedComponent },
+  { path: "about", component: NotImplementedComponent },
+  { path: "course-details/:id", component: CourseDetailsComponent },
+  { path: "my-courses", component: MyCoursesComponent },
+  { path: "", redirectTo: "/home", pathMatch: "full" },
+  { path: "**", component: PageNotFoundComponent }
 ];
 
 @NgModule({
@@ -57,7 +58,8 @@ const ROUTES : Routes = [
     BrowserModule,
     RouterModule.forRoot(ROUTES),
     NgbModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AdminModule
   ],
   providers: [],
   bootstrap: [AppComponent]
