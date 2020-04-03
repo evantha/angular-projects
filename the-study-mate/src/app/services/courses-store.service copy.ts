@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Course } from 'src/models/course';
 import { Observable, BehaviorSubject, Subject } from 'rxjs';
-import { AngularFirestore } from '@angular/fire/firestore';
-
 
 @Injectable({
   providedIn: 'root'
@@ -38,29 +36,34 @@ export class CoursesStoreService {
 
   coursesObservable: Subject<Course[]>;
 
-  constructor( private firestore: AngularFirestore) {
+  constructor() {
     this.coursesObservable = new BehaviorSubject(this.courses);
   }
 
-  private generateId() : string {
-    return this.firestore.createId();
+  private generateId() : number {
+    return Math.round(Math.random() * 10000);
   }
 
   getCourses() : Observable<Course[]> {
-    return this.firestore.collection<Course>('courses').valueChanges();
+    return this.coursesObservable;
   }
 
   createCourse(course: Course) {
     course.id = this.generateId();
-    this.firestore.collection('courses').doc<Course>(course.id).set(course);
+    this.courses.push(course);
+    this.coursesObservable.next([...this.courses]);
   }
 
   updateCourse(course: Course) {
-    this.firestore.collection('courses').doc<Course>(course.id).set(course);
+    const idx = this.getIndex(course);
+    this.courses[idx] = course;
+    this.coursesObservable.next([...this.courses]);
   }
 
   deleteCourse(course: Course) {
-    this.firestore.collection('courses').doc<Course>(course.id).delete();
+    const idx = this.getIndex(course);
+    this.courses.splice(idx, 1);
+    this.coursesObservable.next([...this.courses]);
   }
 
   private getIndex(course: Course): number {

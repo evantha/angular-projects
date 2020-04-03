@@ -4,6 +4,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CourseEditModalComponent } from './course-edit-modal/course-edit-modal.component';
 import { Course } from 'src/models/course';
 import { CoursesStoreService } from 'src/app/services/courses-store.service';
+import { FirstService } from 'src/app/services/first.service';
 
 @Component({
   selector: 'app-my-courses',
@@ -15,7 +16,8 @@ export class MyCoursesComponent implements OnInit {
 
   constructor(
     private modalService: NgbModal,
-    private courseStore: CoursesStoreService
+    private courseStore: CoursesStoreService,
+    private courseHelperService : FirstService
   ) {}
 
   ngOnInit(): void {
@@ -26,39 +28,47 @@ export class MyCoursesComponent implements OnInit {
   }
 
   onCreateCourse() {
-    this.openModal('Create Course', {
+    // this.openModal('Create Course', {
+    //   title: '',
+    //   description: '',
+    //   price: null
+    // } as Course).then(
+    //   value => console.log('value', value),
+    //   reason => console.log(reason)
+    // );
+
+    this.courseHelperService.openModal('Create Course', {
       title: '',
       description: '',
       price: null
-    } as Course).then(
-      value => this.courseStore.createCourse(value),
-      reason => console.log(reason)
-    );
+    } as Course);
   }
 
-  private openModal(title: string, course: Course): Promise<any> {
-    const modalRef = this.modalService.open(CourseEditModalComponent);
-    modalRef.componentInstance.modalTitle = title;
-    modalRef.componentInstance.course = course;
-    return modalRef.result;
-  }
+  // private openModal(title: string, course: Course): Promise<any> {
+  //   const modalRef = this.modalService.open(CourseEditModalComponent);
+  //   modalRef.componentInstance.modalTitle = title;
+  //   modalRef.componentInstance.course = course;
+  //   return modalRef.result;
+  // }
 
-  onCourseEdited(course: Course) {
-    console.log(course.title);
-    this.openModal(course.title, course).then(
-      value => {
-        this.courseStore.updateCourse(value);
-      },
-      reason => console.log(reason)
-    );
-  }
+  // onCourseEdited(course: Course) {
+  //   // console.log(course.title);
+  //   // this.openModal(course.title, course).then(
+  //   //   value => {
+  //   //     this.courseStore.updateCourse(value);
+  //   //   },
+  //   //   reason => console.log(reason)
+  //   // );
+  //   this.courseHelperService.openModal(course.title, course);
+  // }
 
-  onCourseDeleted(course: Course) {
-    this.openModal(course.title, course).then(
-      value => {
-        this.courseStore.deleteCourse(value);
-      },
-      reason => console.log(reason)
-    );
-  }
+  // onCourseDeleted(course: Course) {
+  //   this.courseHelperService.openModal(course.title, course);
+  //   // this.openModal(course.title, course).then(
+  //   //   value => {
+  //   //     this.courseStore.deleteCourse(value);
+  //   //   },
+  //   //   reason => console.log(reason)
+  //   // );
+  // }
 }

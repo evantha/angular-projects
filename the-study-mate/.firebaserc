@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "angular-workshop-project-eva": {
+      "hosting": {
+        "the-study-mate": [
+          "angular-workshop-project-eva"
+        ]
+      }
+    }
+  }
+}

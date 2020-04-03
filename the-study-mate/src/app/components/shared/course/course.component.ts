@@ -13,6 +13,7 @@ import {
   Course
 } from 'src/models/course';
 import { FirstService } from 'src/app/services/first.service';
+import { CoursesStoreService } from 'src/app/services/courses-store.service';
 
 const DEBUG = false;
 
@@ -28,12 +29,10 @@ export class CourseComponent implements OnInit, DoCheck, AfterViewInit, OnDestro
   @Input() editable: false;
 
   @Output() courseSelected = new EventEmitter < Course > ();
-  @Output() courseEdited = new EventEmitter < Course > ();
-  @Output() courseDeleted = new EventEmitter < Course > ();
 
   inFocus = false;
 
-  constructor( private el: ElementRef<HTMLElement>, private firstService: FirstService) {
+  constructor( private el: ElementRef<HTMLElement>, private courseHelperService : FirstService, private courseStore: CoursesStoreService) {
     this.logIt('constructor');
   }
 
@@ -66,11 +65,17 @@ export class CourseComponent implements OnInit, DoCheck, AfterViewInit, OnDestro
   }
 
   onEdit() {
-    this.courseEdited.emit(this.course);
+    // this.courseEdited.emit(this.course);
+    this.courseHelperService.openModal('Edit', this.course).then(
+      value => console.log('successfully edited')
+    );
+//
   }
 
   onDelete() {
-    this.courseDeleted.emit(this.course);
+    // this.courseDeleted.emit(this.course);
+    // this.courseHelperService.openModal('Delete', this.course);
+    this.courseStore.deleteCourse(this.course);
   }
 
   logIt(checkpoint: string) {

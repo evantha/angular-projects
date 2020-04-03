@@ -18,9 +18,9 @@ export class CourseDetailsComponent implements OnInit {
   ngOnInit(): void {
     const title = this.thisRoute.snapshot.paramMap.get('id');
 
-    this.course = COURSE_LIST.find((c)=> {
-      return c.title === title;
-    })
+    // this.course = COURSE_LIST.find((c)=> {
+    //   return c.title === title;
+    // })
   }
 
 }
