@@ -12,13 +12,15 @@ import {
 import {
   Course
 } from 'src/models/course';
+import { FirstService } from 'src/app/services/first.service';
 
-const DEBUG = true;
+const DEBUG = false;
 
 @Component({
   selector: 'app-course',
   templateUrl: './course.component.html',
-  styleUrls: ['./course.component.css']
+  styleUrls: ['./course.component.css'],
+  // providers: [FirstService]
 })
 export class CourseComponent implements OnInit, DoCheck, AfterViewInit, OnDestroy {
 
@@ -31,7 +33,7 @@ export class CourseComponent implements OnInit, DoCheck, AfterViewInit, OnDestro
 
   inFocus = false;
 
-  constructor( private el: ElementRef<HTMLElement>) {
+  constructor( private el: ElementRef<HTMLElement>, private firstService: FirstService) {
     this.logIt('constructor');
   }
 

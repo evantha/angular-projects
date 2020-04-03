@@ -27,7 +27,6 @@ export class CourseEditModalComponent implements OnInit {
   ngOnInit(): void {
     // this.formGroup = this.fb.group(this.course);
     this.formGroup = this.fb.group({
-      id: this.course.id,
       title: [this.course.title, Validators.required],
       description: [this.course.description, Validators.required],
       price: [this.course.price, Validators.required]
@@ -35,9 +34,11 @@ export class CourseEditModalComponent implements OnInit {
   }
 
   onSave() {
-    console.log('original:', this.course);
-    console.log('modified:', this.formGroup.value);
-    this.activeModal.close(this.formGroup.value);
+    const newCourse = this.formGroup.value as Course;
+    if (this.course.id) {
+      newCourse.id = this.course.id;
+    }
+    this.activeModal.close(newCourse);
   }
 
   onClose() {

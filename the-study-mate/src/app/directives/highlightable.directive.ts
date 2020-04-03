@@ -8,7 +8,6 @@ export class HighlightableDirective {
   @Input() appHighlightable = 'shadow';
 
   constructor(private el: ElementRef<HTMLElement> , private renderer: Renderer2) {
-    console.log('HighlightableDirective');
   }
 
   @HostListener('mouseenter')
